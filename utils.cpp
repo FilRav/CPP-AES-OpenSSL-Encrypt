@@ -222,13 +222,16 @@ string myDecrypt(string cipher, string pass) {
     string iv = hashStr.substr(16, 16);
     // cout << "iv: " << iv << endl;
 
-    decrypt(
+    int len = decrypt(
         cipherBytes,
         strlen((char *)cipherBytes),
         (unsigned char *) keyStr.c_str(),
         (unsigned char *) iv.c_str(),
         plainTextBytes
     );
+
+	plainTextBytes[len] = '\0';
+
 
     string plainText((char *) plainTextBytes);
     return plainText;
